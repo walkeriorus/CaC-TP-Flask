@@ -132,6 +132,12 @@ nav a {
   justify-content: center;
   align-items: center;
 }
+.relative{
+  position: relative;
+}
+.absolute{
+  position: absolute;
+}
 /*USER PANEL*/
 .userIcon{
   max-width: 48px;
@@ -139,6 +145,19 @@ nav a {
 .arrow-down{
   max-width: 48px;
 }
+/*userExtra*/
+#userExtra{
+  top: 70px;
+  display: none;
+  z-index: 100;
+}
+#show-hide-userExtra:checked+#userExtra{
+  display: flex;
+}
+/*userExtra*/
+
+
+
 /*USER PANEL - FIN*/
 /*FIN HEADER*/
 /*FOOTER DENIS*/
@@ -164,7 +183,7 @@ nav a {
   user-select: none;
   line-height: 1.5;
 }
-#login>label{
+#login>label,#userExtra>p{
   cursor:pointer;
 }
 #hideShowLogin{
@@ -196,7 +215,7 @@ nav a {
   line-height: 24px;
   width: 100%;
 }
-#login>label,#user-login>button{
+#login>label,#user-login>button,#userExtra>p{
   display: inline-block;
   font-size: 20px;
   padding: .5rem 1rem;
@@ -208,7 +227,7 @@ nav a {
 #user-login>label{
   margin: 0;
 }
-#login>label:active,#user-login>button:active{
+#login>label:active,#user-login>button:active,#userExtra>p{
   animation-name: oprimir;
   animation-timing-function: linear;
   animation-duration: 100ms;
