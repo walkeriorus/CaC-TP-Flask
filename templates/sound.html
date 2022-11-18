@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block headTitle %}
+    <title>Sonidos - Samples Web</title>
+{% endblock %}
+{% block stylesEspecificos %}
+    <link rel="stylesheet" href="static/css/sound.css">
+{% endblock %} 
+{% block main %}
+    <div id="appSounds">
+        <div class="container">
+            <categoria-component v-for="categoria in categorias" :datos-categoria="categoria"></categoria-component>
+        </div>
+    </div>
+{% endblock %}
+{% block importsBody %}
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="static/js/sound.js"></script>
+{% endblock %}

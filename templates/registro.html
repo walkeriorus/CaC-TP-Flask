@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block headTitle %}
+<title>Registro - Samples Web</title>
+{% endblock %}
+{% block stylesEspecificos %}
+<link rel="stylesheet" href="static/css/form.css">
+{% endblock %}
+{% block main %}
+<main id="main">
+        <form method="post" action="/guardarUsuario" id="register-form" class="grid" enctype="multipart/form-data">
+            <div class="grupo__usuario">
+                <label for="user-name">Nombre de usuario</label>
+                <input type="text" id="user-name" name="user-name" class="input">
+                <p class="noVisible msj-error" id="user-name-error"></p>
+            </div>
+            <div class="grupo__password">
+                <label for="user-pass">Contraseña</label>
+                <input type="password" id="user-pass" name="user-pass" class="input">
+                <p class="noVisible msj-error" id="user-pass-error"></p>
+            </div>
+            <div class="grupo__email">
+                <label for="user-email">email</label>
+                <input type="email" id="user-email" name="user-email" class="input">
+                <p class="noVisible msj-error" id="user-email-error"></p>
+            </div>
+            <div class="grupo__checkboxes grid" id="intereses">
+                <label for="bass">Bass</label>
+                <input type="checkbox" id="bass" value="bass" name="bass">
+                <label for="guitar">Guitar</label>
+                <input type="checkbox" id="guitar" value="guitar" name="guitar">
+                <label for="drums">Drums</label>
+                <input type="checkbox" id="drums" value="drums" name="drums">
+                <label for="strings">Strings</label>
+                <input type="checkbox" id="strings" value="strings" name="strings">
+                <label for="vocal">Vocal</label>
+                <input type="checkbox" id="vocal" value="vocal" name="vocal">
+                <label for="synth">Synth</label>
+                <input type="checkbox" id="synth" value="synth" name="synth">
+                <label for="soundEffects">Sound Effects</label>
+                <input type="checkbox" id="soundEffects" value="soundEffects" name="soundEffects">
+                <label for="brass">Brass</label>
+                <input type="checkbox" id="brass" value="brass" name="brass">
+                <p class="noVisible msj-error" id="intereses-error">Selecciona al menos una opción.</p>
+            </div>
+
+            <div class="grupo__terminos grid">
+                <input type="checkbox" id="terminos" name='terminos' class="input">
+                <label for="terminos">
+                    Acepto los terminos y condiciones
+                </label>
+                <p class="noVisible msj-error" id="terminos-error"></p>
+            </div>
+
+            <div id="submit">
+                <button type="submit" id="registrarse" class="button">Crear Cuenta</button>
+            </div>
+        </form>
+</main>
+<div id="mensaje-redireccion">
+    <p>Registro realizado con éxito</p>
+    <p>Redirigiendo a la pagina de inicio en 3seg</p>
+</div>
+{% endblock %}
+{% block importsBody %}
+<script src="static/js/form.js"></script>
+{% endblock %}
