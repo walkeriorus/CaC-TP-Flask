@@ -1,0 +1,64 @@
+:root{
+  --person-bgColor: #281c6b;
+  --personName-textColor:#b1c029ec;
+}
+#main{
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  font-size: 40px;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+#intro{
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  align-items: center;
+}
+.lista{
+  text-align: left;
+}
+.persons{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap: 20px;
+  max-width: 100%;
+  text-align: center;
+}
+.person{
+  background-color: var(--person-bgColor);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 112px 0.5fr 0.5fr;
+  justify-items: center;
+}
+.person-name{
+  color: var(--personName-textColor);
+  align-self: flex-start;
+}
+.person-description{
+  justify-self: center;
+}
+.person-img{
+  max-width: 95%;
+}
+.person-social{
+  align-self: flex-end;
+}
+@media screen and (max-width: 800px) {
+  .persons{
+    font-size: 30px;
+  }
+  .person-description{
+    align-self: flex-start;
+  }
+}
+@media screen and (max-width:720px){
+  .persons{
+    grid-template-columns: 1fr;
+    font-size: 30px;
+  }
+}

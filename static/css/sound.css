@@ -1,0 +1,134 @@
+:root{
+    --cell-title-textColor: #121212;
+    --item-bgColor: #21282c;
+    --body-bgColor: #121212;
+}
+/* Fuente para toda la página */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+}
+/*Contenedor grid*/
+#appSounds{
+    background-color: var(--body-bgColor);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.container {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns:  repeat(6, 1fr);
+    grid-template-areas:
+        "bass brass strings guitar piano sound_fx";
+    gap: 2%;
+}
+/*Definicion de cada grid-area*/
+.header {
+    grid-area: header;
+}
+
+.bass {
+    grid-area: bass;
+}
+
+.brass {
+    grid-area: brass;
+}
+.strings{
+    grid-area: strings;
+}
+.guitar {
+    grid-area: guitar;
+}
+
+.piano {
+    grid-area: piano;
+}
+
+.sound_fx {
+    grid-area: sound_fx;
+}
+/* El footer esta fuera de .container*/
+.pie {
+    grid-area: pie;
+}
+
+/*Apariencia de los items dentro del grid*/
+.item {
+    text-align: center;
+    font-size: larger;
+    padding: 10px;
+    color: rgb(239, 240, 245);
+    border-radius: 10px;
+    background-color: var(--item-bgColor);
+}
+.item-title{
+    text-transform: uppercase;
+    font-weight: 800;
+    padding: 1rem 0;
+}
+/*Estilos de cada pista*/
+.headerimg {
+    padding: 0;
+    border-radius: 0 0 30px 30px;
+    width: 100%;
+}
+/**/
+.cell{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.cell-title{
+    font-weight: bold;
+    text-transform: uppercase;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+}
+.cell-img{
+    width: 100%;
+    border-radius: 0 0 30px 30px;
+}
+.player {
+    position: absolute;
+    display: block;
+    width: 100%;
+    bottom: 0;
+    border-radius: 0 0 30px 30px;
+}
+.item-title,.cell-title{
+    /* background-image: linear-gradient(180deg,transparent 25%,#21282c 25%,#121212 50%,transparent 100%); */
+    background-color: var(--cell-title-textColor);
+    border-radius: 30px 30px 0 0;
+}
+/* Punto de corte para pantallas tipo tablet */
+@media only screen and (max-width: 800px) {
+    .container {
+        /* Distribuimos el contenido en cada fila*/
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:"bass brass""strings guitar""piano sound_fx";
+        row-gap: 0;
+    }
+    .item{
+        margin-top: 1em;
+    }
+}
+@media screen and (max-width:720px){
+}
+/* Punto de corte para pantallas tipo celular */
+@media only screen and (max-width: 600px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+    .item{
+        margin-bottom: 20px;
+    }
+}
