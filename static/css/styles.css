@@ -4,6 +4,7 @@
   --header-bgColor: #121212;
   --footer-bgColor: #121212;
   --body-textColor: #ffffff;
+  --drop-shadow-black: drop-shadow( 0 0 10px black);
 }
 
 * {
@@ -149,7 +150,15 @@ nav a {
 #userExtra{
   top: 70px;
   display: none;
+  width: 100%;
   z-index: 100;
+  border-radius: 0 0 10px 10px;
+  filter: var(--drop-shadow-black);
+  animation-name: expandir;
+  animation-timing-function: linear;
+  animation-duration: 50ms;
+  animation-iteration-count: 1;
+  flex-basis: 150px;
 }
 #show-hide-userExtra:checked+#userExtra{
   display: flex;
@@ -206,7 +215,7 @@ nav a {
   max-width: 250px;
   background-color: var(--header-bgColor);
   border-radius: 2%;
-  filter: drop-shadow( 0 0 10px black);
+  filter: var(--drop-shadow-black);
   z-index: 100;
 }
 #user-login>input,#user-login>label,#user-login>button,#user-login>a{
@@ -227,7 +236,7 @@ nav a {
 #user-login>label{
   margin: 0;
 }
-#login>label:active,#user-login>button:active,#userExtra>p{
+#login>label:active,#user-login>button:active,#userExtra>p:active{
   animation-name: oprimir;
   animation-timing-function: linear;
   animation-duration: 100ms;
@@ -256,6 +265,23 @@ nav a {
   }
   100%{
     transform: scale(0.89);
+  }
+}
+@keyframes expandir{
+  0%{
+    transform: scale(0.25);
+  }
+  25%{
+    transform: scale(0.25);
+  }
+  50%{
+    transform: scale(0.50);
+  }
+  75%{
+    transform: scale(0.75);
+  }
+  100%{
+    transform: scale(1);
   }
 }
 /*FIN Animaciones*/
