@@ -1,5 +1,5 @@
 .venv
 __pycache__
 .vscode
-static\img
+static/img
 notas.markdown
