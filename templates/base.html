@@ -30,7 +30,6 @@
                 <a href="{{url_for('registro')}}" class="nav-link">Registro</a>
             </nav>
             {% if usuario is defined %}
-                <!-- <label for="hideShowLogin">{{usuario}}</label> -->
                 {% include 'userPanel.html' with context %}
             {% else %}
                 <div id="login">
