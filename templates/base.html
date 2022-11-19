@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {%block headTitle%}{%endblock%}
-    <link rel="icon" href="static/img/logo.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="{{url_for('static',filename='img/logo.png')}}" type="image/png" sizes="16x16">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
@@ -20,7 +20,8 @@
     <header>
         <div id="menu-principal">
             <a href="{{url_for('index')}}" class="logo">
-                <img src="static/img/logo.png" alt="Logo de la pagina">
+                <!-- <img src="static/img/logo.png" alt="Logo de la pagina"> -->
+                <img src="{{url_for('static', filename='img/logo.png')}}" alt="Logo de la pagina">
                 <h2 class="nombre-pagina">Samples Sound</h2>
             </a>
             <nav class="nav-bar">
@@ -40,10 +41,11 @@
         </div>
         <div id="menu-secundario" class="displayNone">
             <a href="{{url_for('index')}}" class="logo">
-                <img src="static/img/logo.png" alt="Logo de la pagina">
+                <img src="{{url_for('static', filename='img/logo.png')}}" alt="Logo de la pagina">
                 <h2 class="nombre-pagina">Samples Sound</h2>
             </a>
-            <img id="desplegar-menu" src="static/img/icons/icons8-chevron-abajo-en-círculo-64.png">
+            <!-- <img id="desplegar-menu" src="static/img/icons/abajo-en-circulo_64.png"> -->
+            <img id="desplegar-menu" src="{{url_for('static', filename='img/icons/abajo-en-circulo_64.png')}}">
             <div id="menu-secundario-links" class="displayNone">
                 <a class="nav-link" href="{{url_for('index')}}">Inicio</a>
                 <a class="nav-link" href="{{url_for('sound')}}">Sonidos</a>
@@ -65,7 +67,7 @@
     <footer id="idfooter">
         <p>Derechos Reservados <i class="fa-regular fa-copyright"></i> </p>
     </footer>
-    <script src="static/js/operacionesDeMenu.js"></script>
+    <script src="{{url_for('static',filename='js/operacionesDeMenu.js')}}"></script>
     {%block importsBody%}{%endblock%}
 </body>
 
