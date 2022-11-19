@@ -3,17 +3,19 @@
 <title>Pagina de usuario - Samples Web</title>
 {% endblock %}
 {% block stylesEspecificos %}
-    <link rel="stylesheet" href="{{url_for('static',filename='css/viewAccount.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/viewAccount.css')}}">
 {% endblock %}
 {% block main %}
 <main id="main">
-    <form id="view-user-info">
+    <form action="/edit" method="POST" enctype="multipart/form-data" id="view-user-info" class="grid x2col">
+        <input type="text" value="{{usuario['id']}}" class="displayNone" name="userId" id="user_id">
         <label for="user_name">Nombre de usuario</label>
-        <input type="text" value="{{ usuario['user_name']}}">
+        <input type="text" name="userName" id="user_name" value="{{ usuario['user_name']}}" disabled>
         <label for="user_pass">Contraseña</label>
-        <input type="password" value="{{ usuario['user_pass']}}">
+        <input type="password" name="userPass" id="user_pass" value="{{ usuario['user_pass']}}" disabled>
         <label for="user_email">Email</label>
-        <input type="email" value="{{usuario['user_email']}}">
+        <input type="email" name="userEmail" id="user_email" value="{{usuario['user_email']}}" disabled>
+        <button type="submit" for="view-user-info" id="edit-button">Editar</button>
     </form>
 </main>
 {% endblock %}
