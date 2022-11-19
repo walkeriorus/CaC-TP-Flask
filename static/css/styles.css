@@ -4,7 +4,7 @@
   --header-bgColor: #121212;
   --footer-bgColor: #121212;
   --body-textColor: #ffffff;
-  --drop-shadow-black: drop-shadow( 0 0 10px black);
+  --drop-shadow-black: drop-shadow( 0 10px 10px black);
 }
 
 * {
@@ -150,15 +150,20 @@ nav a {
 #userExtra{
   top: 70px;
   display: none;
-  width: 100%;
-  z-index: 100;
+  row-gap: 10px;
+
+  background-color: var(--header-bgColor);
+  height: auto;
+
+  padding: 10px;
   border-radius: 0 0 10px 10px;
+  z-index: 100;
+
   filter: var(--drop-shadow-black);
   animation-name: expandir;
   animation-timing-function: linear;
   animation-duration: 50ms;
   animation-iteration-count: 1;
-  flex-basis: 150px;
 }
 #show-hide-userExtra:checked+#userExtra{
   display: flex;
