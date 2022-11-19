@@ -51,7 +51,7 @@ def iniciarSesion():
     _userName = request.form['user-name']
     _userPass = request.form['user-pass']
     
-    sql = f'''SELECT `user_name`,`user_pass` FROM `sound`.`usuarios`
+    sql = f'''SELECT `id`,`user_name`,`user_pass`,`user_email` FROM `sound`.`usuarios`
             WHERE `user_name`="{_userName}" AND `user_pass`="{_userPass}"'''
     
     conn, cursor = conectarDb( mysql )
@@ -61,15 +61,39 @@ def iniciarSesion():
     conn.commit()
     #En caso de que no coincidan el nombre y la contraseña con un registro en la base de datos
     if datos != None:
-        nombreIngresado = datos[0]
+        usuario = {
+            'id': datos[0],
+            'user_name': datos[1],
+            'user_pass': datos[2],
+            'user_email': datos[3]
+        }
     else:
         #Si el usuario no se encontro mando una cadena vacia
-        nombreIngresado = None
+        usuario = None
     
+    return render_template('index.html', usuario = usuario )
+#Nota: al definir que la ruta recibe una parte variable, dentro de la declaracion <variable> no puede haber espacios
+@app.route('/user/<int:id>')
+def verCuenta(id):
+    sql = f'''SELECT `id`,`user_name`,`user_pass`,`user_email` FROM `sound`.`usuarios`
+    WHERE id ={id}'''
     
-    
-    
-    return render_template('index.html', usuario = nombreIngresado )
+    conn, cursor = conectarDb( mysql )
+    cursor.execute( sql )
+    datos = cursor.fetchone() #Aca tendria los datos del usuario como un array
+    conn.commit()#cierro la conexion con la base de datos
+    if datos != None:
+        usuario = {
+            'id': datos[0],
+            'user_name': datos[1],
+            'user_pass': datos[2],
+            'user_email': datos[3]
+        }
+    else:
+        #Si el usuario no se encontro mando una cadena vacia
+        usuario = None
+        
+    return render_template('viewAccountInfo.html',usuario = usuario)
 
 if __name__=='__main__':
     app.run()
