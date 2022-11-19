@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block headTitle %}
+<title>Pagina de usuario - Samples Web</title>
+{% endblock %}
+{% block stylesEspecificos %}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/viewAccount.css')}}">
+{% endblock %}
+{% block main %}
+<main id="main">
+    <form id="view-user-info">
+        <label for="user_name">Nombre de usuario</label>
+        <input type="text" value="{{ usuario['user_name']}}">
+        <label for="user_pass">Contraseña</label>
+        <input type="password" value="{{ usuario['user_pass']}}">
+        <label for="user_email">Email</label>
+        <input type="email" value="{{usuario['user_email']}}">
+    </form>
+</main>
+{% endblock %}
