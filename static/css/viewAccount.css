@@ -18,25 +18,16 @@ form label,form input{
     line-height: 24px;
     display: inline;
     font-size: 20px;
+    user-select: none;
 }
 form label{
     text-transform: uppercase;
+    padding-left: 15px;
 }
 .x2col{
     grid-template-columns: 1fr 1fr;
 }
-form input~label{
-    justify-self: center;
-    user-select: none;
-    background-color: #01bcf3;
-    padding: 5px;
-    border-radius: 3px;
-    cursor: pointer;
-}
-div label:first-child{
-    padding-left: 15px;
-}
-div input:nth-child(2){
+form input{
     padding-left: 10px;
     width: 80%;
 }

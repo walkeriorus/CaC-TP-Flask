@@ -75,7 +75,6 @@ def iniciarSesion():
 #Nota: al definir que la ruta recibe una parte variable, dentro de la declaracion <variable> no puede haber espacios
 @app.route('/user/<int:idUsuario>')
 def verCuenta(idUsuario):
-    print(idUsuario)
     sql = f'''SELECT `id`,`user_name`,`user_pass`,`user_email` FROM `sound`.`usuarios`
     WHERE id ={idUsuario}'''
     
@@ -95,10 +94,20 @@ def verCuenta(idUsuario):
         usuario = None
         
     return render_template('viewAccountInfo.html', usuario = usuario)
-@app.route('/edit', methods=['POST'])
+
+@app.route('/edit', methods=['POST'] )
 def edit():
-    keys = list(request.form.keys())
-    print(keys)
-    return True
+    _userID = request.form.get("userId", None)
+    _userName = request.form.get('userName', None)
+    _userPass = request.form.get('userPass', None)
+    _userEmail = request.form.get('userEmail', None)
+    usuario = {
+        'id': _userID,
+        'user_name': _userName,
+        'user_pass': _userPass,
+        'user_email': _userEmail
+    }
+    return render_template('edit.html', usuario = usuario )
+
 if __name__=='__main__':
     app.run()

@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+{% block headTitle %}
+    <title> Editar datos - Samples Web</title>
+{% endblock %}
+{% block main %}
+    <main id="main">
+    <form id='edit-form' name='edit-form' action='/save' method='post' enctype='multipart/form-data'>
+        <label for="user-id">Id: {{usuario['id']}}</label>
+        <input type="hidden" value="{{usuario['id']}}">
+        <label for="user-name">Nombre de usuario</label>
+        <input type="text" name="user-name" id="user-name" value="{{usuario['user_name']}}">
+        <label for="user-pass">Contraseña</label>
+        <input type="text" name="user-pass" id="user-pass" value="{{usuario['user_pass']}}">
+        <label for="user-email">Correo</label>
+        <input type="text" name="user-email" id="user-email" value="{{usuario['user_email']}}">
+        <button for="edit-form" type="submit">Guardar cambios</button>
+    </form>
+    </main>
+{% endblock %}
