@@ -20,7 +20,6 @@
     <header>
         <div id="menu-principal">
             <a href="{{url_for('index')}}" class="logo">
-                <!-- <img src="static/img/logo.png" alt="Logo de la pagina"> -->
                 <img src="{{url_for('static', filename='img/logo.png')}}" alt="Logo de la pagina">
                 <h2 class="nombre-pagina">Samples Sound</h2>
             </a>
@@ -44,7 +43,6 @@
                 <img src="{{url_for('static', filename='img/logo.png')}}" alt="Logo de la pagina">
                 <h2 class="nombre-pagina">Samples Sound</h2>
             </a>
-            <!-- <img id="desplegar-menu" src="static/img/icons/abajo-en-circulo_64.png"> -->
             <img id="desplegar-menu" src="{{url_for('static', filename='img/icons/abajo-en-circulo_64.png')}}">
             <div id="menu-secundario-links" class="displayNone">
                 <a class="nav-link" href="{{url_for('index')}}">Inicio</a>
@@ -52,7 +50,6 @@
                 <a class="nav-link" href="{{url_for('nosotros')}}">Nosotros</a>
                 <a class="nav-link" href="{{url_for('registro')}}">Registro</a>
                 {% if usuario is defined %}
-                    <!-- <label for="hideShowLogin">{{usuario}}</label> -->
                     {% include 'userPanel.html' with context %}
                 {% else %}
                     <div id="login">
