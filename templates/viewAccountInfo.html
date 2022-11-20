@@ -8,13 +8,13 @@
 {% block main %}
 <main id="main">
     <form action="/edit" method="POST" enctype="multipart/form-data" id="view-user-info" class="grid x2col">
-        <input type="text" value="{{usuario['id']}}" class="displayNone" name="userId" id="user_id">
-        <label for="user_name">Nombre de usuario</label>
-        <input type="text" name="userName" id="user_name" value="{{ usuario['user_name']}}" disabled>
-        <label for="user_pass">Contraseña</label>
-        <input type="password" name="userPass" id="user_pass" value="{{ usuario['user_pass']}}" disabled>
-        <label for="user_email">Email</label>
-        <input type="email" name="userEmail" id="user_email" value="{{usuario['user_email']}}" disabled>
+        <input type="text" value="{{usuario['id']}}" class="displayNone" name="userId" id="userId">
+        <label for="userName">Nombre de usuario</label>
+        <input type="text" name="userName" id="userName" value="{{usuario['user_name']}}">
+        <label for="userPass">Contraseña</label>
+        <input type="password" name="userPass" id="userPass" value="{{usuario['user_pass']}}">
+        <label for="userEmail">Email</label>
+        <input type="email" name="userEmail" id="userEmail" value="{{usuario['user_email']}}">
         <button type="submit" for="view-user-info" id="edit-button">Editar</button>
     </form>
 </main>
