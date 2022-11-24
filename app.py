@@ -73,6 +73,7 @@ def iniciarSesion():
     
     return render_template('index.html', usuario = usuario )
 #Nota: al definir que la ruta recibe una parte variable, dentro de la declaracion <variable> no puede haber espacios
+
 @app.route('/user/<int:idUsuario>')
 def verCuenta(idUsuario):
     sql = f'''SELECT `id`,`user_name`,`user_pass`,`user_email` FROM `sound`.`usuarios`
@@ -90,7 +91,7 @@ def verCuenta(idUsuario):
             'user_email': datos[3]
         }
     else:
-        #Si el usuario no se encontro mando una cadena vacia
+        #Si el usuario no se encontro mando None
         usuario = None
         
     return render_template('viewAccountInfo.html', usuario = usuario)
@@ -108,6 +109,24 @@ def edit():
         'user_email': _userEmail
     }
     return render_template('edit.html', usuario = usuario )
+
+@app.route('/guardarCambios',methods=["POST"])
+def guardarCambios():
+    _userID = request.form.get("userId", None)
+    _userName = request.form.get('userName', None)
+    _userPass = request.form.get('userPass', None)
+    _userEmail = request.form.get('userEmail', None)
+    
+    sql = f"""UPDATE `sound`.`usuarios` 
+    SET `user_name` = '{_userName}', `user_pass` = '{_userPass}', `user_email` = '{_userEmail}'
+    WHERE `id`='{_userID}'"""
+    print(sql)
+    conn, cursor = conectarDb(mysql)
+    cursor.execute(sql)
+    conn.commit()
+    
+    return render_template('index.html')
+
 
 if __name__=='__main__':
     app.run()
