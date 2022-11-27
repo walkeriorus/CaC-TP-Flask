@@ -166,12 +166,12 @@ nav a {
   animation-iteration-count: 1;
 }
 #show-hide-userExtra:checked+#userExtra{
-  display: flex;
+  display: grid;
 }
 /*userExtra*/
 
 .carrito{
-  max-width: 64px;
+  max-width: 48px;
   cursor: pointer;
 }
 
@@ -225,6 +225,7 @@ nav a {
   border-radius: 2%;
   filter: var(--drop-shadow-black);
   z-index: 100;
+  animation: expandir linear 50ms;
 }
 #user-login>input,#user-login>label,#user-login>button,#user-login>a{
   grid-column: 1/3;
@@ -256,6 +257,13 @@ nav a {
 }
 #user-login a{
   color: #01bcf3;
+}
+#userExtra>p{
+  font-size: 16px;
+  text-align: center;
+}
+.w-48{
+  max-width: 48px;
 }
 /*Animaciones*/
 @keyframes oprimir {

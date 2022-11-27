@@ -127,6 +127,10 @@ def guardarCambios():
     
     return render_template('index.html')
 
+@app.route('/agregarAlCarrito')
+def agregarAlCarrito():
+    pass
+
 
 if __name__=='__main__':
     app.run()
