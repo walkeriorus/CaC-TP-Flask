@@ -74,7 +74,12 @@ const crearAudios = function (contenedorName, soundList) {
         pista.appendChild(titulo);
         pista.appendChild(imagen);
         pista.appendChild(audio);
+        let agregarAlCarrito = document.createElement('img')
+        agregarAlCarrito.src = 'static/img/icons/agregar-carrito_90.png'
+        agregarAlCarrito.setAttribute('name',`${sound.previews["preview-lq-mp3"]}`)
+        agregarAlCarrito.classList.add('carrito')
         contenedorDeAudios.appendChild(pista);
+        contenedorDeAudios.appendChild(agregarAlCarrito)
     }
     switch (contenedorName) {
         case 'bass':

@@ -170,7 +170,10 @@ nav a {
 }
 /*userExtra*/
 
-
+.carrito{
+  max-width: 64px;
+  cursor: pointer;
+}
 
 /*USER PANEL - FIN*/
 /*FIN HEADER*/
