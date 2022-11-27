@@ -1,13 +1,13 @@
-<div id="user-panel" class="flex relative">
+<div id="user-panel" class="grid relative">
     <div id="username-userimg-panel" class="flex centered">
         <img class="userIcon" src="{{url_for('static', filename='img/icons/account_96.png')}}">
         <span class="user-name-panel">{{ usuario['user_name'] }}</span>
         <label for="show-hide-userExtra"><span><img src="{{url_for('static', filename='img/icons/abajo-en-circulo_64.png')}}" alt="circulo con una flecha hacia abajo" class="arrow-down"></span></label>
     </div>
     <input type="checkbox" class="displayNone" id="show-hide-userExtra" name="show-hide-userExtra">
-    <div id="userExtra" class="column absolute">
+    <div id="userExtra" class="absolute">
         <p id="carrito-de-compras"><a href="#">Carrito de compras</a></p>
         <p id="config-cuenta"><a href="/user/{{usuario['id']}}">Cuenta</a></p>
-        <p id="logout"><img src="{{url_for('static',filename='img/icons/logout-icon-white.png')}}" alt="boton salir"></p>
+        <p id="logout"><img src="{{url_for('static',filename='img/icons/logout-icon-white.png')}}" alt="boton salir" class="w-48"></p>
     </div>
 </div>
