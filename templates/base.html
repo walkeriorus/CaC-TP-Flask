@@ -29,8 +29,8 @@
                 <a href="{{url_for('nosotros')}}" class="nav-link">Nosotros</a>
                 <a href="{{url_for('registro')}}" class="nav-link">Registro</a>
             </nav>
-            {% if usuario is defined %}
-                {% include 'userPanel.html' with context %}
+            {% if current_user.id is defined %}
+                {% include 'userPanel.html'%}
             {% else %}
                 <div id="login">
                     <label for="hideShowLogin">Login</label>
@@ -49,8 +49,8 @@
                 <a class="nav-link" href="{{url_for('sound')}}">Sonidos</a>
                 <a class="nav-link" href="{{url_for('nosotros')}}">Nosotros</a>
                 <a class="nav-link" href="{{url_for('registro')}}">Registro</a>
-                {% if usuario is defined %}
-                    {% include 'userPanel.html' with context %}
+                {% if current_user.id is defined %}
+                    {% include 'userPanel.html'%}
                 {% else %}
                     <div id="login">
                         <label for="hideShowLogin">Login</label>

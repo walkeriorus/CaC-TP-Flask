@@ -7,7 +7,7 @@
 {% endblock %}
 {% block main %}
 <main id="main">
-        <form method="post" action="/guardarUsuario" id="register-form" class="grid" enctype="multipart/form-data">
+        <form method="post" action="{{url_for('guardarUsuario')}}" id="register-form" class="grid" enctype="multipart/form-data">
             <div class="grupo__usuario">
                 <label for="user-name">Nombre de usuario</label>
                 <input type="text" id="user-name" name="user-name" class="input">
