@@ -1,6 +1,7 @@
-from flask import Flask, render_template, redirect, url_for,request
+from flask import Flask, render_template,request, redirect, url_for,flash
 from flaskext.mysql import MySQL
-
+from flask_login import LoginManager, login_user, logout_user, login_required
+from user import User
 app = Flask(__name__)
 app.config.from_object('config.DefaultSettings')
 
@@ -33,51 +34,70 @@ def registro():
 def guardarUsuario():
     _userName = request.form['user-name']
     _userPass = request.form['user-pass']
-    _correo = request.form['user-email']
-    datosDelUsuario = ( _userName, _correo, _userPass )
+    _userEmail = request.form['user-email']
     
     conn, cursor = conectarDb( mysql )
-    
-    sql = '''INSERT INTO `sound`.`usuarios` (`user_name`,`user_email`,`user_pass`)
-    VALUES(%s,%s,%s)'''
-    cursor.execute(sql, datosDelUsuario)
+    usuario = User(0,_userName,_userEmail,_userPass)
+    sql = f'''INSERT INTO `sounds`.`usuarios` (`user_name`,`user_email`,`user_pass`)
+    VALUES('{usuario.name}','{usuario.email}','{usuario.password}')'''
+    cursor.execute(sql)
     
     conn.commit()
     
     return redirect(url_for('index'))
 
-@app.route('/login', methods=['POST'] )
-def iniciarSesion():
-    _userName = request.form['user-name']
-    _userPass = request.form['user-pass']
-    
-    sql = f'''SELECT `id`,`user_name`,`user_pass`,`user_email` FROM `sound`.`usuarios`
-            WHERE `user_name`="{_userName}" AND `user_pass`="{_userPass}"'''
-    
-    conn, cursor = conectarDb( mysql )
-    cursor.execute( sql )
-    
-    datos = cursor.fetchone() #Supuestamente solo hay una coincidencia para la consulta hecha
-    conn.commit()
-    #En caso de que no coincidan el nombre y la contraseña con un registro en la base de datos
-    if datos != None:
-        usuario = {
-            'id': datos[0],
-            'user_name': datos[1],
-            'user_pass': datos[2],
-            'user_email': datos[3]
-        }
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(userId):
+    return User.get( mysql, userId )
+
+@app.route('/login',methods=['GET','POST'])
+def login():
+    if request.method == 'GET':
+        return render_template('loginForm.html')
+    #Si el método no es GET, entonces es POST :-)
     else:
-        #Si el usuario no se encontro mando una cadena vacia
-        usuario = None
-    
-    return render_template('index.html', usuario = usuario )
+        #Construir un objeto usuario con los datos que llegan del formulario
+        _userName = request.form.get('user-name')
+        _userPass = request.form.get('user-pass')
+        
+        sql = f"""SELECT * FROM `sounds`.`usuarios`
+        WHERE `user_name`= '{_userName}'"""
+        
+        conn,curr = conectarDb(mysql)
+        
+        curr.execute(sql)
+        dbUserInfo = curr.fetchone()
+        if dbUserInfo != None:
+            dbUserId,dbUserName, dbUserEmail, dbUserPass = dbUserInfo
+            usuario = User(dbUserId,dbUserName,dbUserEmail,_userPass)
+        
+            #Si el nuevo password hasheado es igual al que estaba en la base de datos entonces el usuario puse bien la contraseña
+            logged_in = User.check_password( dbUserPass,_userPass )
+            print("logged_in: ", logged_in)
+            if logged_in:
+                login_user(usuario)
+                return redirect(url_for('index'))
+            else:
+                flash('Usuario o contraseña incorrectos')
+                return render_template(url_for('index'))
+        else:
+            #el nombre del usuario no existe
+            flash('El usuario no existe')
+            return redirect(url_for('login'))
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 #Nota: al definir que la ruta recibe una parte variable, dentro de la declaracion <variable> no puede haber espacios
 
 @app.route('/user/<int:idUsuario>')
 def verCuenta(idUsuario):
-    sql = f'''SELECT `id`,`user_name`,`user_pass`,`user_email` FROM `sound`.`usuarios`
-    WHERE id ={idUsuario}'''
+    sql = f'''SELECT `user_id`,`user_name`,`user_pass`,`user_email` FROM `sounds`.`usuarios`
+    WHERE `user_id` ={idUsuario}'''
     
     conn, cursor = conectarDb( mysql )
     cursor.execute( sql )
@@ -117,7 +137,7 @@ def guardarCambios():
     _userPass = request.form.get('userPass', None)
     _userEmail = request.form.get('userEmail', None)
     
-    sql = f"""UPDATE `sound`.`usuarios` 
+    sql = f"""UPDATE `sounds`.`usuarios` 
     SET `user_name` = '{_userName}', `user_pass` = '{_userPass}', `user_email` = '{_userEmail}'
     WHERE `id`='{_userID}'"""
     print(sql)
