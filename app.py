@@ -2,6 +2,8 @@ from flask import Flask, render_template,request, redirect, url_for,flash
 from flaskext.mysql import MySQL
 from flask_login import LoginManager, login_user, logout_user, login_required
 from user import User
+from categorias import categorias as CAT
+
 app = Flask(__name__)
 app.config.from_object('config.DefaultSettings')
 
@@ -20,7 +22,7 @@ def index():
 
 @app.route('/sound')
 def sound():
-    return render_template('sound.html')
+    return render_template('sound.html', categorias = CAT )
 
 @app.route('/nosotros')
 def nosotros():
