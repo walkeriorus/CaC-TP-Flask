@@ -17,6 +17,7 @@ const CategoriaComponentHijo = {
             <source :src="sonido">
             Tu navegador no puede reproducir este archivo
         </audio>
+        <a :href="'cart/'+ sonido"><img src="static/img/icons/agregar-carrito_60.png"></a>
     </div>
     `,
     data(){
