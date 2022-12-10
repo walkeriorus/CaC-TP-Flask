@@ -17,16 +17,19 @@
         <div class="cell">
             <p class="cell-title">{{hijo["titulo"]}}</p>
             <span class="cell-img-wrapper">
-                <img class="cell-img" src="{{hijo["imagen"]}}" alt="{{hijo["altimagen"]}}" onclick="showControls">
+                <img class="cell-img" src="{{hijo["imagen"]}}" alt="{{hijo["altimagen"]}}" title="{{hijo["title"]}}">
             </span>
             <audio controls="controls" class="player">
                 <source src="{{hijo["sonido"]}}">
                 Tu navegador no puede reproducir este archivo
             </audio>
-            <a :href="cart/{{hijo["sonido"]}}"><img src="static/img/icons/agregar-carrito_60.png"></a>
+            <a href="cart/{{hijo["sonido"]}}"><img src="static/img/icons/agregar-carrito_60.png"></a>
         </div>
         {% endfor %}
     </div>
     {% endfor %}
     </div>   
 {% endblock %}
+{%block importsBody%}
+<script src="{{url_for('static',filename='/js/actions.js')}}"></script>
+{%endblock%}
